@@ -108,7 +108,7 @@
 DROP TABLE IF EXISTS studio;
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS actors;
-DROP TABLE IF EXISTS characters;
+DROP TABLE IF EXISTS roles;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -130,9 +130,9 @@ CREATE TABLE actors (
   name TEXT
 );
 
-CREATE TABLE characters (
+CREATE TABLE roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  char_name TEXT
+  char_name TEXT,
   actor_id INTEGER,
   movie_id INTEGER
 );
@@ -141,47 +141,44 @@ CREATE TABLE characters (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
-INSERT INTO studio (
-    studio
-) VALUES (
-    "Warner Bros."
-);
+INSERT INTO studio 
+    (studio) 
+    VALUES 
+    ("Warner Bros.")
+;
 
-INSERT INTO movies (
-    title,
-    year,
-    rating,
-    studio_id
-) VALUES (
-    "Batman Begins",
-    "2005",
-    "PG-13",
-    "1"
-);
+INSERT INTO movies 
+    (title, year, rating, studio_id) 
+    VALUES 
+    ("Batman Begins", "2005", "PG-13", "1"),
+    ("The Dark Knight", "2008", "PG-13", "1"),
+    ("The Dark Knight Rises", "2012", "PG-13", "1")
+;
 
-INSERT INTO movies (
-    title,
-    year,
-    rating,
-    studio_id
-) VALUES (
-    "The Dark Knight",
-    "2008",
-    "PG-13",
-    "1"
-);
+INSERT INTO actors 
+    (name)
+    VALUES 
+    ("Christian Bale"),
+    ("Michael Caine"),
+    ("Liam Neeson"),
+    ("Katie Holmes"),
+    ("Gary Oldman"),
+    ("Heath Ledger"),
+    ("Aaron Eckhart"),
+    ("Maggie Gyllenhaal"),
+    ("Tom Hardy"),
+    ("Joseph Gordon-Levitt"),
+    ("Anne Hathaway")
+;
 
-INSERT INTO movies (
-    title,
-    year,
-    rating,
-    studio_id
-) VALUES (
-    "The Dark Knight Rises",
-    "2012",
-    "PG-13",
-    "1"
-);
+INSERT INTO roles 
+    (char_name, actor_id, movie_id)
+    VALUES
+    ("Bruce Wayne", 1, 1),
+    ("Bruce Wayne", 1, 2), 
+    ("Bruce Wayne", 1, 3), 
+;
+
 
 -- Prints a header for the movies output
 .print "Movies"
