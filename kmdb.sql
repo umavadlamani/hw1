@@ -114,7 +114,7 @@ DROP TABLE IF EXISTS roles;
 -- TODO!
 CREATE TABLE studio (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    studio TEXT
+    studio_name TEXT
 );
 
 CREATE TABLE movies (
@@ -142,7 +142,7 @@ CREATE TABLE roles (
 -- TODO!
 
 INSERT INTO studio 
-    (studio) 
+    (studio_name) 
     VALUES 
     ("Warner Bros.")
 ;
@@ -177,8 +177,19 @@ INSERT INTO roles
     ("Bruce Wayne", 1, 1),
     ("Bruce Wayne", 1, 2), 
     ("Bruce Wayne", 1, 3), 
+    ("Alfred", 2, 1),
+    ("Alfred", 2, 2),
+    ("Ra's Al Ghul", 3, 1),
+    ("Rachel Dawes", 4, 1),
+    ("Rachel Dawes", 8, 2),
+    ("Commissioner Gordon", 5, 1),
+    ("Commissioner Gordon", 5, 3),
+    ("Joker", 6, 2),
+    ("Harvey Dent", 7, 2),
+    ("Bane", 9, 3),
+    ("John Blake", 10, 3),
+    ("Selina Kyle", 11, 3)
 ;
-
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -187,6 +198,8 @@ INSERT INTO roles
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT movies.title, movies.year, movies.title, movies.rating, studio.studio_name
+FROM movies INNER JOIN studio ON movies.studio_id = studio.id;
 
 -- Prints a header for the cast output
 .print ""
@@ -197,3 +210,7 @@ INSERT INTO roles
 
 -- The SQL statement for the cast output
 -- TODO!
+SELECT movies.title, actors.name, roles.char_name
+FROM roles INNER JOIN movies ON roles.movie_id = movies.id
+INNER JOIN actors ON roles.actor_id = actors.id
+ORDER BY title;
